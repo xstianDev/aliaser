@@ -1,0 +1,13 @@
+# vscode
+.vscode/
+
+# git
+.gitignore
+
+# dirs
+fn/
+alias/
+
+# files
+todo.md
+install.sh
