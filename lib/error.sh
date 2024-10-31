@@ -8,11 +8,10 @@
 #   $2 - Error message
 # Returns: Nothing
 err() {
-    RESET='\033[0m'
     RED='\033[0;31m'
-    WHITE='\033[0;37m'
+    RESET='\033[0m'
 
-    printf "${RED}error: ${WHITE}%s${RESET}\n" "$2"
+    printf "${RED}error:${RESET} %s\n" "$2"
 
     if [[ "$1" == 1 ]]; then
         exit 1

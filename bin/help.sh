@@ -13,9 +13,10 @@ Options:
 
     -i, --init          Initializes the 'dynalias' directory structure.
 
-    -u, --update        Processes the files in the 'dynalias' folder and formats the 'output' file.
+    -l, --list          Shows the lines of the 'output' file.
 
-    -l, --list          Lists all available aliases by echoing the contents of the 'output' file.
+    -s, --set  [type]   If a type is passed, creates a new alias and updates the existing ones.
+                        If not, just updates the output.
 
     -r, --read [name]   Reads the contents of an alias and displays it.
 

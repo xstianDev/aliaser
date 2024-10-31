@@ -4,22 +4,22 @@
 
 # Description: Reads a file, and extracts its name and contents to format the alias command.
 # Parameters:
-#   $1 - Kind of alias
+#   $1 - Type of alias
 #   $2 - File to be processed
 # Returns: Formatted alias command
 format_alias() {
-    mode=$1
+    type=$1
     file=$2
 
-    if [[ $mode == "text" ]]; then
+    if [[ $type == "text" ]]; then
         code=$(cat "$file")
-    elif [[ $mode == "func" ]]; then
+    elif [[ $type == "func" ]]; then
         code="$file"
     else
-        err 1 "unknown mode"
+        err 1 "unknown type $type; can't create aliases from this folder"
     fi
 
-    name="${file#*/"${mode}"/}"
+    name="${file#*/"${type}"/}"
 
     echo "alias $name='$code'"
 }
@@ -30,7 +30,6 @@ format_alias() {
 # Returns: The alias' content or error message.
 get_alias_content() {
     expr="alias $1="
-
     line=$(grep "$expr" "$DYNALIAS_OUTPUT")
 
     if [[ -z "$line" ]]; then
@@ -41,7 +40,7 @@ get_alias_content() {
     content="${content%\'*}"
 
     if [[ -z "$content" ]]; then
-        err 1 "alias file has no content"
+        err 1 "alias exists but has no content"
     fi
 
     echo "$content"

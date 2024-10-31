@@ -4,7 +4,7 @@
 
 DYNALIAS="$HOME/dynalias"
 
-if [ ! -d "$DYNALIAS" ]; then
+if [[ ! -d "$DYNALIAS" ]]; then
     mkdir -p "$DYNALIAS/alias/text" "$DYNALIAS/alias/func"
     touch "$DYNALIAS/output"
 fi

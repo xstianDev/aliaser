@@ -1,18 +1,13 @@
 #!/bin/bash
 
-# TODO ver si hay que mover la ejecución del comando arriba de 
-# if [ -f ~/.bash_aliases ]; then
-#     . ~/.bash_aliases
-# fi
-
 if [[ -z "$1" ]]; then
-    echo "Must provide a flag to use"
+    echo "You must provide a flag to use"
     echo "Try 'dynalias --help' for more information."
     exit 1
 fi
     
 if [[ ! -d "$HOME/dynalias" ]]; then
-    echo "The 'dynalias' folder is not created. Use 'dynalias' --init to create it."
+    echo "The 'dynalias' folder is not created. Use 'dynalias --init' to create it."
     echo "Try 'dynalias --help' for more information."
     exit 1
 fi
@@ -36,11 +31,15 @@ case "$1" in
     -h|--help)
         source "$DYNALIAS_BIN/help.sh"
         ;;
-    -u|--update)
-        source "$DYNALIAS_BIN/update.sh"
-        ;;
     -l|--list)
         source "$DYNALIAS_BIN/list.sh"
+        ;;
+    # TODO arreglar y actualizar
+    -s|--set)
+        args=("")
+        [[ $# -ne 1 ]] && args=("${@:2}")
+
+        source "$DYNALIAS_BIN/set.sh" "${args[@]}"
         ;;
     -r|--read)
         args=("${@:2}")
@@ -64,5 +63,3 @@ case "$1" in
         err 1 "unknown command $1, use -h or --help"
         ;;
 esac
-
-exit 0

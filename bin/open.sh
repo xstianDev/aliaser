@@ -8,6 +8,10 @@ source "$DYNALIAS_LIB/alias.sh"
 
 content=$(get_alias_content "$1")
 
+if [[ -z $content || "$content" =~ "error" ]]; then
+    err 1 "alias doesn't exist"
+fi
+
 if [[ -f $content ]]; then
     nano "$content"
 else

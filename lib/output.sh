@@ -7,7 +7,7 @@
 #   $1 - Path of the file
 # Returns: Nothing
 check_output() {
-    if [ -f "$DYNALIAS_OUTPUT" ]; then
+    if [[ -f "$DYNALIAS_OUTPUT" ]]; then
         truncate -s 0 "$DYNALIAS_OUTPUT"
     else
         touch "$DYNALIAS_OUTPUT"
